@@ -28,23 +28,22 @@ public class ClienteService {
 
     @Transactional
     public ClienteDTO crearCliente(ClienteDTO cliente){
-        Cliente clienteNuevo= Cliente.builder()
-                .nombre(cliente.getNombre())
-                .apellidos(cliente.getApellidos())
-                .curp(cliente.getCurp())
-                .fechaNacimiento(cliente.getFechaNacimiento())
-                .build();
-        return modelMapper.map(clienteNuevo, ClienteDTO.class);
+        Cliente clienteNuevo= new Cliente();
+        clienteNuevo.setNombre(cliente.getNombre());
+        clienteNuevo.setApellidos(cliente.getApellidos());
+        clienteNuevo.setCurp(cliente.getCurp());
+        clienteNuevo.setFechaNacimiento(cliente.getFechaNacimiento());
+        return modelMapper.map(clienteRepository.save(clienteNuevo), ClienteDTO.class);
     }
 
     @Transactional
     public ClienteDTO modificarCliente(Long idCliente,ClienteDTO clienteDTO){
         Cliente clienteB=clienteRepository.findById(idCliente)
                 .orElseThrow(()-> new EntityNotFoundException("Cliente no encontrado"));
-        clienteB.setNombre(clienteB.getNombre());
-        clienteB.setApellidos(clienteB.getApellidos());
-        clienteB.setCurp(clienteB.getCurp());
-        clienteB.setFechaNacimiento(clienteB.getFechaNacimiento());
+        clienteB.setNombre(clienteDTO.getNombre());
+        clienteB.setApellidos(clienteDTO.getApellidos());
+        clienteB.setCurp(clienteDTO.getCurp());
+        clienteB.setFechaNacimiento(clienteDTO.getFechaNacimiento());
         Cliente clienteGuardado=clienteRepository.save(clienteB);
         return modelMapper.map(clienteGuardado, ClienteDTO.class);
     }

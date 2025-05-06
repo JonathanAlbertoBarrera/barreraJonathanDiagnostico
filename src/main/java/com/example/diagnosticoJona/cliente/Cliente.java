@@ -1,17 +1,11 @@
 package com.example.diagnosticoJona.cliente;
 
 import jakarta.persistence.*;
-import lombok.*;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "cliente")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,4 +16,55 @@ public class Cliente {
     private String curp;
     @Column(name = "fecha_nacimiento")
     private Date fechaNacimiento;
+
+    public Cliente() {
+    }
+
+    public Cliente(Long id, String nombre, String apellidos, String curp, Date fechaNacimiento) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.curp = curp;
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public String getCurp() {
+        return curp;
+    }
+
+    public void setCurp(String curp) {
+        this.curp = curp;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
 }
