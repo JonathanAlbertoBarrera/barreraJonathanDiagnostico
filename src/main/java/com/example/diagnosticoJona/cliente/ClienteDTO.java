@@ -1,10 +1,9 @@
 package com.example.diagnosticoJona.cliente;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.util.Date;
 
 public class ClienteDTO {
@@ -15,8 +14,8 @@ public class ClienteDTO {
     private String apellidos;
     @Pattern(regexp = "^[A-Z]{4}\\d{6}[A-Z]{6}\\d{2}$", message = "La CURP debe tener el formato correcto")
     private String curp;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Past(message = "La fecha de nacimiento debe ser en el pasado")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaNacimiento;
 
     public ClienteDTO() {
