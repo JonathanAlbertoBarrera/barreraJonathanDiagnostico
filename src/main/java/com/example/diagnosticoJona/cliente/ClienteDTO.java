@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 public class ClienteDTO {
+    private Long id;
     @NotBlank(message = "Debes ingresar un nombre bro")
     private String nombre;
     @NotBlank(message = "Debes ingresar un apellido bro")
@@ -21,11 +22,20 @@ public class ClienteDTO {
     public ClienteDTO() {
     }
 
-    public ClienteDTO(String nombre, String apellidos, String curp, Date fechaNacimiento) {
+    public ClienteDTO(Long id, String nombre, String apellidos, String curp, Date fechaNacimiento) {
+        this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.curp = curp;
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNombre() {
