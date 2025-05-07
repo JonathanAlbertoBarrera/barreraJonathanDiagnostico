@@ -1,6 +1,8 @@
 package com.example.diagnosticoJona.cliente;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 import java.util.Date;
 
@@ -10,7 +12,18 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "Debes ingresar un nombre")
+    @Pattern(
+            regexp = "^[\\p{L} .'-]+$",
+            message = "El nombre solo puede contener letras y espacios. No ingreses numeros "
+    )
     private String nombre;
+
+    @NotBlank(message = "Debes ingresar un apellido")
+    @Pattern(
+            regexp = "^[\\p{L} .'-]+$",
+            message = "Los apellidos solo pueden contener letras y espacios. No ingreses numeros"
+    )
     private String apellidos;
     @Column(unique = true)
     private String curp;
