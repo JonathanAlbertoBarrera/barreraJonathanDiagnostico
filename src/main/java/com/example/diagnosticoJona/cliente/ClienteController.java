@@ -15,6 +15,7 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
+    
     @GetMapping
     public ResponseEntity<List<ClienteDTO>> obtenerTodosLosClientes() {
         return ResponseEntity.status(HttpStatus.OK).body(clienteService.todosClientes());
